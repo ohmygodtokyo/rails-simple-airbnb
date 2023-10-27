@@ -1,0 +1,100 @@
+<%= render 'navbar' %>
+
+<div class="container mt-3">
+
+  <!-- Heading -->
+  <div class="row">
+    <div class="col-12">
+      <h1>All our flats</h1>
+    </div>
+  </div>
+
+  <!-- List total amount of flats in database -->
+  <div class="row">
+    <div class="col">
+      <p><%= "All #{@flats.count} flats." %></p>
+    </div>
+  </div>
+
+  <!-- Cards listing all flats -->
+  <div class="row">
+
+    <% @flats.each do |f| %>
+      <div class="col-md-3">
+        <div class="flat-card">
+            <div class="card" style="width: 18rem;">
+              <div class="flat-card-image">
+                <!-- style="background-image: url('https://images.unsplash.com/photo-1494526585095-c41746248156?w=1200')" -->
+                <img src="https://images.unsplash.com/photo-1494526585095-c41746248156?w=1200" class="card-img-top" alt="...">
+              </div>
+              <div class="flat-card-content">
+
+                <div class="card-body">
+                  <h5 class="card-title"><%= f.name %></h5>
+                  <p class="card-text"><%= f.address %></p>
+                </div>
+
+                <div class="card-body">
+                <div class="row">
+                  <div class="col">
+                    <div class="d-flex align-items-center">
+                      <i class="fa-solid fa-people-roof"></i>
+                      <span><%= f.number_of_guest %></span>
+                    </div>
+                  </div>
+                  <div class="col">
+                    <div class="d-flex align-items-center">
+                      <i class="fa-solid fa-dollar-sign"></i>
+                      <span><%= f.price_per_night %></span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              </div>
+
+              <div class="card-body">
+                <div class="row">
+                  <div class="col">
+                    <div class="d-flex align-items-center">
+                      <%= link_to "More info", flat_path(f), class: "" %>
+                    </div>
+                  </div>
+                  <div class="col">
+                    <div class="d-flex align-items-center justify-content-center">
+                      <%= link_to "Edit", edit_flat_path(f) %>
+                    </div>
+                  </div>
+                  <div class="col">
+                    <div class="d-flex align-items-center">
+                      <%= link_to "Remove", flat_path(f), data: { turbo_method: :delete, turbo_confirm: 'Are you sure my boi?' }, class: "" %>
+                      <%# flat_path(@flat), data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' },   %>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!--  ms-3 text-warning / ms-3 text-danger-->
+
+            </div>
+        </div>
+      </div>
+    <% end %>
+
+  </div>
+  <!-- <div class="card" style="width: 18rem;">
+      <img src="..." class="card-img-top" alt="...">
+      <div class="card-body">
+        <h5 class="card-title">Card title</h5>
+        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+      </div>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item">An item</li>
+        <li class="list-group-item">A second item</li>
+        <li class="list-group-item">A third item</li>
+      </ul>
+      <div class="card-body">
+        <a href="#" class="card-link">Card link</a>
+        <a href="#" class="card-link">Another link</a>
+      </div>
+</div> -->
+</div>
