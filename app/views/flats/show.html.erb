@@ -1,7 +1,6 @@
 <%= render 'navbar' %>
 
 <div class="map">
-  <!-- <img src="https://images.unsplash.com/photo-1494526585095-c41746248156?w=1200" alt="Green House with Scenic Landscape"> -->
 </div>
 
 <div id="background-color">
@@ -15,8 +14,7 @@
         <div class="flat-show-card">
           <h3>A bit more about this flat...</h3>
           <p><%= @flat.description %></p>
-          <div class="map" style="background-image: url('https://maps.googleapis.com/maps/api/staticmap?center=10 Clifton Gardens London W9 1DT&amp;zoom=13&amp;scale=2&amp;size=1000x1000&amp;maptype=roadmap&amp;markers=color:red%7C10 Clifton Gardens London W9 1DT&amp;key=AIzaSyAPpx0wk4d-AQ8bhe8-a-ihC7NXLoPElhg')">
-          </div>
+          <div class="map" style="background-image: url('https://maps.googleapis.com/maps/api/staticmap?center=<%= @flat.address %>&zoom=13&scale=2&size=1000x1000&maptype=roadmap&markers=color:red%7C<%= @flat.address %>&key=AIzaSyDy7ydOuXdaWzlAhqVY8rA-q0OBBGHRxNE')"></div>
         </div>
       </div>
       <div class="col-4">
@@ -64,5 +62,3 @@
     </div>
   </div>
 </div>
-
-<!-- <div class="map" style="background-image: url('https://images.unsplash.com/photo-1494526585095-c41746248156?w=1200')"></div> -->

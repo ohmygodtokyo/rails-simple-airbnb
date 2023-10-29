@@ -1,6 +1,16 @@
 class FlatsController < ApplicationController
   def index
-    @flats = Flat.all
+    @query = params[:query]
+    if @query.present?
+      begin
+        @flats = Flat.where("LOWER(name) LIKE ?", "%#{@query}%")
+      rescue
+        ActiveRecord::StatementInvalid
+        @flats = Flat.none
+      end
+    else
+      @flats = Flat.all
+    end
   end
 
   def show
@@ -14,7 +24,7 @@ class FlatsController < ApplicationController
   def create
     @flat = Flat.new(flat_params)
     if @flat.save
-      redirect_to flats_path(@flats)
+      redirect_to flat_path(@flat)
     else
       render :new, status: :unprocessable_entity
     end
@@ -24,12 +34,10 @@ class FlatsController < ApplicationController
     find_flat
   end
 
-  # Don't forget to change the redirect_to from 'flats_path(@flats)' to 'flat_path(@flat)'
-
   def update
     find_flat
     if @flat.update(flat_params)
-      redirect_to flats_path(@flats)
+      redirect_to flat_path(@flat)
     else
       render :edit, status: :unprocessable_entity
     end
